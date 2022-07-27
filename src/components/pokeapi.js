@@ -1,14 +1,13 @@
 import {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const Pokeapi = props => {
     const [pokeList, setPokeList] = useState([]);
 
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
-            .then(response => response.json())
-            .then(response => setPokeList(response.results))
+        axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
+            .then(response => {setPokeList(response.data.results)})
     }, []);
-    console.log(pokeList[0])
 
     return(
         <div>
